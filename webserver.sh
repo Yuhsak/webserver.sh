@@ -24,7 +24,7 @@ serve() {
 		echo "HTTP/1.0 200 OK\n"
 		cat $FILE_PATH
 	# --- Display directory listing ---
-	elif [[ $REQUEST_URI =~ /$ ]]; then
+	elif [ -d $FILE_PATH ]; then
 		echo "HTTP/1.0 200 OK\n"
 		echo "<html><head><meta charset='utf-8' /><title>Index of $FILE_PATH</title></head><body>"
 		echo $(directoryIndex $FILE_PATH)
@@ -46,6 +46,7 @@ directoryIndex() {
 }
 
 # --- Run process ---
+echo "Server has started at localhost:8000."
 while : ; do
 	cat "$PIPE" | nc -l 8000 | serve 1> "$PIPE"
 	[ $? != 0 ] && break
