@@ -26,7 +26,7 @@ serve() {
 	# --- Display directory listing ---
 	elif [[ $REQUEST_URI =~ /$ ]]; then
 		echo "HTTP/1.0 200 OK\n"
-		echo "<html><head><meta charset='utf-8' /></head><body>"
+		echo "<html><head><meta charset='utf-8' /><title>Index of $FILE_PATH</title></head><body>"
 		echo $(directoryIndex $FILE_PATH)
 		echo "</body></html>"
 	# --- When the file doesn't exist ---
